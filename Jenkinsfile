@@ -14,10 +14,19 @@ pipeline {
             }
         }
     }
+   post {
+       always {
+           publishHTML(target: [
+               reportDir: 'target',
+               reportFiles: 'cucumber-report.html',
+               reportName: 'Cucumber HTML Report',
+               keepAll: true,
+               alwaysLinkToLastBuild: true,
+               allowMissing: true
+           ])
 
-    post {
-        always {
-            echo 'Pipeline execution finished.'
-        }
-    }
+           echo 'Pipeline execution finished.'
+       }
+   }
+}
 }
