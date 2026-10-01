@@ -20,7 +20,13 @@ public class ProductsPage {
     }
 
     public String getProductsTitle() {
-        return driver.findElement(productsTitle).getText();
+
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(productsTitle)
+        ).getText();
     }
 
     public void addBackpackToCart() {
